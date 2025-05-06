@@ -1,0 +1,37 @@
+
+.container {
+    background-color: #ee54a1;
+    margin-top: 50px;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 50px;
+    color: white;
+
+}
+
+label {
+    font-weight: bold;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+  }
+  
+  .btnsalvar {
+    background-color: #b90660;
+    color: white;
+    margin-bottom: 15px;
+    width: 30%;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .btn {
+    margin: 0px 15px 2px 2px;
+  }
+  

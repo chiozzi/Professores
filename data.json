@@ -1,0 +1,18 @@
+{
+  "professores": [],
+  "disciplinas": [
+    {
+      "id": 1,
+      "nome": "Matemática",
+      "cargaHoraria": 60,
+      "tipo": "Teórica"
+    },
+    {
+      "id": 2,
+      "nome": "Computação",
+      "level": "",
+      "cargaHoraria": 123,
+      "tipo": "Teórica"
+    }
+  ]
+}

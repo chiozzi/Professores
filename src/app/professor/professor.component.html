@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="row">
+        <div class="col-8 m-auto">
+            <h1 class="text-center">Cadastro de Professores</h1>
+            <form [formGroup]="formGroupProfessor">
+
+                <div class="mb-3">
+                  <label for="inputName" class="form-label">Nome: </label>
+                  <input formControlName="nome"  type="text" class="form-control" id="inputNome" placeholder="Digite o seu nome">
+                </div>
+                
+              <div class="mb-3">
+                  <label for="inputDisciplina" class="form-label">Disciplina:</label>
+                  <select formControlName="disciplinaId" class="form-select" id="inputDisciplina">
+                    <option value="">Selecione uma Disciplina</option>
+                    <option *ngFor="let d of disciplinas" [value]="d.id">{{ d.nome }}</option>
+                  </select>
+              </div>
+              
+              <div class="btn-container">
+                <button type="submit" class="btn btnsalvar" (click)="save()">Salvar</button>
+              </div>
+              
+            </form>
+
+              <h1 class="text-center">Professores Cadastrados</h1>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Disciplina</th>
+                    <th scope="col">Remover</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of professores">
+                    <th scope="row">{{p.id}}</th>
+                    <td>{{p.nome}}</td>
+                     <td>{{ getDisciplinaNome(p.disciplinaId) }}</td>
+                    <td><button class="btn btn-danger" (click)="delete(p)"  >Remover</button>   </td>
+                  </tr>
+                </tbody>
+              </table>
+
+
+        </div>
+    </div>    
+</div>

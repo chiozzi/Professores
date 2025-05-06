@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="row">
+      <div class="col-8 m-auto">
+          <h1 class="text-center">Cadastro de Disciplinas</h1>
+          <form [formGroup]="formGroupDisciplina">
+
+              <div class="mb-3">
+                  <label for="inputNome" class="form-label">Nome da Disciplina: </label>
+                  <input formControlName="nome" type="text" class="form-control" id="inputNome" placeholder="Digite a disciplina">
+              </div>
+            
+              <div class="mb-3">
+                  <label for="inputCarga" class="form-label">Duração do curso: (em horas)</label>
+                  <input formControlName="cargaHoraria" type="number" class="form-control" id="inputCarga" placeholder="Digite a carga horária da disciplina">
+              </div>
+
+              <div class="mb-3 mt-3 tipo">
+                <label class="form-label d-block">Tipo</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="tipo" value="Teórica" id="Teórica">
+                    <label class="form-check-label" for="Teórica">Teórica</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" formControlName="tipo" value="Prática" id="Prática">
+                    <label class="form-check-label" for="Prática">Prática</label>
+                  </div>
+                </div>
+    
+                <div class="btn-container">
+                  <button type="submit" class="btn btnsalvar" (click)="save()">Salvar</button>
+                </div>               
+            </form>
+
+            <h1 class="text-center">Disciplinas Cadastradas</h1>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Carga Horária</th>
+                  <th scope="col">Tipo</th>
+                  <th scope="col">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let d of disciplinas">
+                  <th scope="row">{{d.id}}</th>
+                  <td>{{d.nome}}</td>
+                  <td>{{d.cargaHoraria}}</td>
+                  <td>{{d.tipo}}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="delete(d)">Remover</button>
+                    <button type="button" class="btn btn-warning" (click)="edit(d)">Editar</button> 
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+  </div>    
+</div>
