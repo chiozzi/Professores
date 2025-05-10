@@ -27,7 +27,9 @@
                 </div>
     
                 <div class="btn-container">
-                  <button type="submit" class="btn btnsalvar" (click)="save()">Salvar</button>
+                  <button type="submit" class="btn btnsalvar" (click)="onClickSave()">Salvar</button>
+                  <button *ngIf="isEditing"  class="btn btn-primary" (click)="onClickConfirmUpdate()" >Alterar</button>
+                  <button class="btn btn-primary ms-2" (click)="onClickClear()">Limpar</button>
                 </div>               
             </form>
 
@@ -49,8 +51,8 @@
                   <td>{{d.cargaHoraria}}</td>
                   <td>{{d.tipo}}</td>
                   <td>
-                    <button class="btn btn-danger" (click)="delete(d)">Remover</button>
-                    <button type="button" class="btn btn-warning" (click)="edit(d)">Editar</button> 
+                    <button class="btn btn-danger" (click)="onClickDelete(d)">Remover</button>
+                    <button type="button" class="btn btn-warning" (click)="onClickUpdate(d)">Editar</button> 
                   </td>
                 </tr>
               </tbody>

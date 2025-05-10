@@ -9,16 +9,17 @@
                   <input formControlName="nome"  type="text" class="form-control" id="inputNome" placeholder="Digite o seu nome">
                 </div>
                 
-              <div class="mb-3">
-                  <label for="inputDisciplina" class="form-label">Disciplina:</label>
-                  <select formControlName="disciplinaId" class="form-select" id="inputDisciplina">
-                    <option value="">Selecione uma Disciplina</option>
-                    <option *ngFor="let d of disciplinas" [value]="d.id">{{ d.nome }}</option>
-                  </select>
-              </div>
+
+                <div class="mb-3">
+                    <label for="inputDisciplina" class="form-label">Disciplina:</label>
+                    <input formControlName="disciplina"  type="text" class="form-control" id="inputDisciplina" placeholder="Digite sua disciplina">
+                </div>
+      
               
               <div class="btn-container">
-                <button type="submit" class="btn btnsalvar" (click)="save()">Salvar</button>
+                <button *ngIf="!isEditing" class="btn btn-primary" (click)="onClickSave()"  >Salvar</button>
+                <button *ngIf="isEditing"  class="btn btn-primary" (click)="onClickConfirmUpdate()" >Alterar</button>
+                <button class="btn btn-primary ms-2" (click)="onClickClear()">Limpar</button>
               </div>
               
             </form>
@@ -31,14 +32,17 @@
                     <th scope="col">Nome</th>
                     <th scope="col">Disciplina</th>
                     <th scope="col">Remover</th>
+                    <th scope="col">Editar</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr *ngFor="let p of professores">
                     <th scope="row">{{p.id}}</th>
                     <td>{{p.nome}}</td>
-                     <td>{{ getDisciplinaNome(p.disciplinaId) }}</td>
-                    <td><button class="btn btn-danger" (click)="delete(p)"  >Remover</button>   </td>
+                     <td>{{ p.disciplina }}</td>
+                    <td><button class="btn btn-danger" (click)="onClickDelete(p)"  >Remover</button>   </td>
+                    <td><button class="btn btn-primary" (click)="onClickUpdate(p)"  >Editar</button>   </td>
+
                   </tr>
                 </tbody>
               </table>

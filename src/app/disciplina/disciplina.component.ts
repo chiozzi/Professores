@@ -13,7 +13,7 @@ export class DisciplinaComponent implements OnInit {
 
   disciplinas: Disciplina[] = [];
   formGroupDisciplina: FormGroup;
-  editingDisciplina: Disciplina | null = null;  
+  isEditing: boolean = false;  
 
   constructor(private service: DisciplinaService,
     private formBuilder: FormBuilder
@@ -37,50 +37,43 @@ export class DisciplinaComponent implements OnInit {
     });
   }
 
-  save() {
-    if (this.editingDisciplina) {
-      this.service.update(this.formGroupDisciplina.value).subscribe({
-        next: () => {
-          this.loadDisciplinas();
-          this.formGroupDisciplina.reset();
-          this.editingDisciplina = null;
-          alert('Disciplina atualizada com sucesso!');
-        },
-        error: () => {
-          alert('Erro ao atualizar a disciplina.');
-        }
-      });
-    } else {
-      this.service.save(this.formGroupDisciplina.value).subscribe({
-        next: json => {
-          this.disciplinas.push(json);
-          this.formGroupDisciplina.reset();
-          alert('Disciplina cadastrada com sucesso!');
-        },
-        error: () => {
-          alert('Erro ao cadastrar a disciplina.');
-        }
-      });
-    }
+  onClickSave() {
+    this.service.save(this.formGroupDisciplina.value).subscribe({
+          next: json => {
+            this.disciplinas.push(json);
+            this.formGroupDisciplina.reset();
+          }
+    });
   }
 
-  edit(disciplina: Disciplina) {
-    this.formGroupDisciplina.setValue(disciplina);
-    this.editingDisciplina = disciplina;
-  }
-
-  delete(disciplina: Disciplina) {
-    if (confirm(`Tem certeza que deseja excluir a disciplina "${disciplina.nome}"?`)) {
-      this.service.delete(disciplina).subscribe({
-        next: () => {
-          this.loadDisciplinas();
-          alert('Disciplina excluída com sucesso!');
-        },
-        error: () => {
-          alert('Erro ao excluir a disciplina.');
-        }
+   onClickDelete(disciplina: Disciplina) {
+     this.service.delete(disciplina).subscribe({
+          next: () => this.loadDisciplinas()
       });
     }
+    onClickUpdate(disciplina: Disciplina) {
+        this.formGroupDisciplina.setValue(disciplina);
+        this.isEditing=true;
+      }
+  
+      onClickConfirmUpdate() {
+        this.service.update(this.formGroupDisciplina.value)
+          .subscribe({
+              next: () => {
+                  this.loadDisciplinas(); 
+                  this.clear();
+              }
+          });
+      }
+  
+      onClickClear() {
+        this.clear();
+      }
+        
+      clear(){
+        this.formGroupDisciplina.reset();
+        this.isEditing=false;   
+      }
+  
   }
-}
-    
+  

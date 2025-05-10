@@ -1,5 +1,11 @@
 {
-  "professores": [],
+  "professores": [
+    {
+      "id": 1,
+      "nome": "dasdasd",
+      "disciplina": "dasd"
+    }
+  ],
   "disciplinas": [
     {
       "id": 1,
@@ -13,6 +19,13 @@
       "level": "",
       "cargaHoraria": 123,
       "tipo": "Teórica"
+    },
+    {
+      "id": 3,
+      "nome": "",
+      "level": "",
+      "cargaHoraria": "",
+      "tipo": ""
     }
   ]
 }

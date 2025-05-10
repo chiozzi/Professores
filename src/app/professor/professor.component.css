@@ -22,15 +22,14 @@ label {
     display: flex;
     justify-content: center; /* centraliza horizontalmente */
   }
-  
-  .btnsalvar {
-    background-color: #b90660;
+
+.btn-container .btn {
+   background-color: #b90660;
     color: white;
     margin-bottom: 15px;
     width: 30%;
     justify-content: center;
     font-weight: bold;
+    border: 1px solid white;
 
-
-  }
-  
+}
